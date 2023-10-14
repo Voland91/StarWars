@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AppService} from "./app.service";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,4 @@ import {AppService} from "./app.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  characters$ = this.appService.characters$;
-
-    constructor(
-      private readonly appService: AppService,
-    ) {
-    }
 }
