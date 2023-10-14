@@ -1,1 +1,56 @@
-<p *ngIf="character$ | async as character">{{character.name}}</p>
+<div class="clr-row" *ngIf="character$ | async as character">
+  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+    <div class="card">
+      <h3 class="card-header">{{character.name}}</h3>
+      <div class="card-block">
+        <h4 class="card-title">Character details:</h4>
+        <div class="card-text">
+          <clr-datagrid>
+            <clr-dg-row>
+              <clr-dg-cell>Birth year</clr-dg-cell>
+              <clr-dg-cell>{{character.birth_year}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+              <clr-dg-cell>Eye color</clr-dg-cell>
+              <clr-dg-cell>{{character.eye_color}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+              <clr-dg-cell>Gender</clr-dg-cell>
+              <clr-dg-cell>{{character.gender}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+              <clr-dg-cell>Hair color</clr-dg-cell>
+              <clr-dg-cell>{{character.hair_color}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+              <clr-dg-cell>Height</clr-dg-cell>
+              <clr-dg-cell>{{character.height}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+              <clr-dg-cell>Mass</clr-dg-cell>
+              <clr-dg-cell>{{character.mass}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+              <clr-dg-cell>Skin color</clr-dg-cell>
+              <clr-dg-cell>{{character.skin_color}}</clr-dg-cell>
+            </clr-dg-row>
+          </clr-datagrid>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          *ngIf="currentCharacterId > 1"
+          (click)="loadPrevCharacter()"
+          class="btn btn-sm btn-link">
+          Prev character
+        </button>
+        <button
+          *ngIf="currentCharacterId < charactersListLength"
+          (click)="loadNextCharacter()"
+          class="btn btn-sm btn-link">
+          Next character
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

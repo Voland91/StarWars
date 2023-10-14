@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {CharacterDetailsService} from "./character-details.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {CharacterInterface} from "../../interfaces/app-api.interface";
+import { CharacterDetailsService } from './character-details.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, map, switchMap, tap } from 'rxjs';
+import { CharactersService } from '../../services/characters.service';
 
 @Component({
   selector: 'app-character-details',
@@ -10,12 +10,30 @@ import {CharacterInterface} from "../../interfaces/app-api.interface";
   styleUrls: ['./character-details.component.css'],
 })
 export class CharacterDetailsComponent {
-  readonly currentId = this.activeRoute.snapshot.params['characterId'];
+  loader = true;
+  currentCharacterId = 0;
+  charactersListLength = this.charactersService.characterListLength;
 
-  character$: Observable<CharacterInterface> = this.characterDetailsService.getCharacter(this.currentId);
+  character$ = this.activatedRoute.params.pipe(
+    map(params => params['characterId']),
+    tap(id => this.currentCharacterId = Number(id)),
+    switchMap(id => this.characterDetailsService.getCharacter(id)),
+    finalize(() => this.loader = false),
+  );
 
   constructor(
     private readonly characterDetailsService: CharacterDetailsService,
-    private readonly activeRoute: ActivatedRoute,
-  ) {}
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly charactersService: CharactersService,
+  ) {
+  }
+
+  loadPrevCharacter() {
+    void this.router.navigate([this.currentCharacterId - 1]);
+  }
+
+  loadNextCharacter() {
+    void this.router.navigate([this.currentCharacterId + 1]);
+  }
 }

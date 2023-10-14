@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { map } from "rxjs";
-import { AppApiService } from "../../services/app-api.service";
+import { CharactersService } from '../../services/characters.service';
+import { map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MainPageService {
-  characters$ = this.appApiService.getCharacters().pipe(
-    map(data => data.results),
+  characters$ = this.charactersService.charactersResponse$.pipe(
+    map(response => response.results),
   );
 
   constructor(
-    private readonly appApiService: AppApiService,
-  ) { }
+    private readonly charactersService: CharactersService,
+  ) {
+  }
 }
