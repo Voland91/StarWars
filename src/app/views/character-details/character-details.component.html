@@ -1,5 +1,5 @@
-<div class="clr-row" *ngIf="character$ | async as character">
-  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+<div class="clr-row clr-justify-content-center" *ngIf="character$ | async as character; else: loader">
+  <div class="clr-col-md-8 clr-col-12">
     <div class="card">
       <h3 class="card-header">{{character.name}}</h3>
       <div class="card-block">
@@ -37,20 +37,24 @@
           </clr-datagrid>
         </div>
       </div>
-      <div class="card-footer">
+      <div class="card-footer clr-justify-content-between">
         <button
           *ngIf="currentCharacterId > 1"
           (click)="loadPrevCharacter()"
-          class="btn btn-sm btn-link">
+          class="btn btn-primary btn-sm">
           Prev character
         </button>
         <button
           *ngIf="currentCharacterId < charactersListLength"
           (click)="loadNextCharacter()"
-          class="btn btn-sm btn-link">
+          class="btn btn-primary btn-sm">
           Next character
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #loader>
+  <app-spinner/>
+</ng-template>

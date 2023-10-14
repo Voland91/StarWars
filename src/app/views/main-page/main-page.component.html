@@ -1,4 +1,4 @@
-<clr-datagrid>
+<clr-datagrid *ngIf="characters$ | async as characters; else: loader;">
   <clr-dg-column>Name</clr-dg-column>
   <clr-dg-column>Height</clr-dg-column>
   <clr-dg-column>Mass</clr-dg-column>
@@ -6,7 +6,7 @@
   <clr-dg-column>Eye color</clr-dg-column>
 
   <clr-dg-row
-    *ngFor="let character of characters$ | async; trackBy: trackByName;"
+    *ngFor="let character of characters; trackBy: trackByName;"
     (click)="viewCharacterDetails(character)"
   >
     <clr-dg-cell>{{ character.name }}</clr-dg-cell>
@@ -16,3 +16,7 @@
     <clr-dg-cell>{{ character.eye_color }}</clr-dg-cell>
   </clr-dg-row>
 </clr-datagrid>
+
+<ng-template #loader>
+  <app-spinner/>
+</ng-template>

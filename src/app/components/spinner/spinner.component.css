@@ -1,0 +1,11 @@
+.spinner-wrapper {
+  width: 100vw;
+  margin-top: calc(100vh / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-text {
+  margin-left: 10px;
+}
