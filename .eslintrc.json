@@ -107,8 +107,6 @@
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {
-        "@angular-eslint/template/accessibility-elements-content": "error",
-        "@angular-eslint/template/accessibility-valid-aria": "error",
         "@angular-eslint/template/no-distracting-elements": "error",
         "@angular-eslint/template/no-call-expression": "error",
         "@angular-eslint/template/use-track-by-function": "error"
