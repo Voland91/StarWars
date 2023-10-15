@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CharacterInterface } from '../../interfaces/app-api.interface';
+import { Character } from '../../interfaces/app-api.interface';
 import { MainPageService } from './main-page.service';
 import { map, tap } from 'rxjs';
 
@@ -24,13 +24,13 @@ export class MainPageComponent {
   ) {
   }
 
-  trackByName = (_index: number, item: CharacterInterface) => item.name;
+  trackByName = (_index: number, item: Character) => item.name;
 
-  viewCharacterDetails(character: CharacterInterface) {
+  viewCharacterDetails(character: Character) {
     const cutUrl = character.url.match(/\d+/);
     const id = cutUrl?.[0];
 
-    void this.router.navigate([id]);
+    void this.router.navigate(['details', id]);
   }
 
   loadMoreCharacters() {

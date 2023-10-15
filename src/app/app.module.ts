@@ -10,6 +10,10 @@ import { CharacterDetailsComponent } from './views/character-details/character-d
 import { MainPageComponent } from './views/main-page/main-page.component';
 import { AppNavigationComponent } from './components/navigation/app-navigation.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import {
+  PlanetsDynamicDataTableComponent,
+} from './views/planets-dynamic-data-table/planets-dynamic-data-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AppNavigationComponent,
     MainPageComponent,
     SpinnerComponent,
+    PlanetsDynamicDataTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +30,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ClarityModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   bootstrap: [AppComponent],
 })

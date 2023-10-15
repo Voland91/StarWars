@@ -26,10 +26,10 @@ export class CharacterDetailsComponent {
   }
 
   loadPrevCharacter() {
-    void this.router.navigate([this.currentCharacterId - 1]);
+    void this.router.navigate(['details', this.currentCharacterId - 1]);
   }
 
   loadNextCharacter() {
-    void this.router.navigate([this.currentCharacterId + 1]);
+    void this.router.navigate(['details', this.currentCharacterId + 1]);
   }
 }

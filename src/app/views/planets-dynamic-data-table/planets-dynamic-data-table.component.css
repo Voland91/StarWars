@@ -1,0 +1,9 @@
+.table-wrapper {
+  padding: 20px;
+}
+
+.search-wrapper>input {
+  margin: 20px auto;
+  display: block;
+
+}

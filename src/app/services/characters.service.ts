@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppApiService } from './app-api.service';
 import { BehaviorSubject, map, shareReplay, switchMap, tap } from 'rxjs';
-import { CharacterInterface } from '../interfaces/app-api.interface';
+import { Character } from '../interfaces/app-api.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { CharacterInterface } from '../interfaces/app-api.interface';
 export class CharactersService {
   nextPageUrl: string | null = null;
   charactersListLength: number | null = null;
-  charactersList: CharacterInterface[] = [];
+  charactersList: Character[] = [];
 
   loadMore$ = new BehaviorSubject(false);
 
