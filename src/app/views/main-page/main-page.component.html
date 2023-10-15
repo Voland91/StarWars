@@ -1,21 +1,29 @@
-<clr-datagrid *ngIf="characters$ | async as characters; else: loader;">
-  <clr-dg-column>Name</clr-dg-column>
-  <clr-dg-column>Height</clr-dg-column>
-  <clr-dg-column>Mass</clr-dg-column>
-  <clr-dg-column>Hair color</clr-dg-column>
-  <clr-dg-column>Eye color</clr-dg-column>
+<section *ngIf="characters$ | async as characters; else: loader;" class="content-wrapper">
+  <div class="clr-row">
+    <div *ngFor="let character of characters; trackBy: trackByName;" class="clr-col-sm-12 clr-col-md-3">
+      <div  class="card">
+        <h3 class="card-header">{{ character.name }}</h3>
+        <div class="card-block">
+          <button
+            (click)="viewCharacterDetails(character)"
+            class="btn btn-primary btn-sm details-button">
+            See details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <clr-dg-row
-    *ngFor="let character of characters; trackBy: trackByName;"
-    (click)="viewCharacterDetails(character)"
-  >
-    <clr-dg-cell>{{ character.name }}</clr-dg-cell>
-    <clr-dg-cell>{{ character.height }}</clr-dg-cell>
-    <clr-dg-cell>{{ character.mass }}</clr-dg-cell>
-    <clr-dg-cell>{{ character.hair_color }}</clr-dg-cell>
-    <clr-dg-cell>{{ character.eye_color }}</clr-dg-cell>
-  </clr-dg-row>
-</clr-datagrid>
+  <div class="clr-row clr-justify-content-center">
+    <button
+      (click)="loadMoreCharacters()"
+      *ngIf="isMoreCharactersToDownload"
+      class="btn btn-primary custom-button">
+      Load More Characters
+    </button>
+  </div>
+</section>
+
 
 <ng-template #loader>
   <app-spinner/>

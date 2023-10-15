@@ -5,9 +5,9 @@ import { map } from 'rxjs';
 export const charactersListLengthResolver = () => {
   const charactersService = inject(CharactersService);
 
-  if (charactersService.characterListLength) return charactersService.characterListLength;
+  if (charactersService.charactersListLength) return charactersService.charactersListLength;
 
   return charactersService.charactersResponse$.pipe(
-    map(response => response.results.length),
+    map(response => response.count),
   );
 };

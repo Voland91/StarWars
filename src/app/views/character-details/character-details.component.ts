@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CharacterDetailsService } from './character-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
-import { CharactersService } from '../../services/characters.service';
 
 @Component({
   selector: 'app-character-details',
@@ -11,7 +10,7 @@ import { CharactersService } from '../../services/characters.service';
 })
 export class CharacterDetailsComponent {
   currentCharacterId = 0;
-  charactersListLength = this.charactersService.characterListLength;
+  charactersListLength = this.characterDetailsService.charactersListLength;
 
   character$ = this.activatedRoute.params.pipe(
     map(params => params['characterId']),
@@ -23,7 +22,6 @@ export class CharacterDetailsComponent {
     private readonly characterDetailsService: CharacterDetailsService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly charactersService: CharactersService,
   ) {
   }
 

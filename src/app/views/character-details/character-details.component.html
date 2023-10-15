@@ -1,4 +1,4 @@
-<div class="clr-row clr-justify-content-center" *ngIf="character$ | async as character; else: loader">
+<div *ngIf="character$ | async as character; else: loader" class="clr-row clr-justify-content-center">
   <div class="clr-col-md-8 clr-col-12">
     <div class="card">
       <h3 class="card-header">{{character.name}}</h3>
@@ -39,14 +39,14 @@
       </div>
       <div class="card-footer clr-justify-content-between">
         <button
-          *ngIf="currentCharacterId > 1"
           (click)="loadPrevCharacter()"
+          *ngIf="currentCharacterId > 1"
           class="btn btn-primary btn-sm">
           Prev character
         </button>
         <button
-          *ngIf="currentCharacterId < charactersListLength"
           (click)="loadNextCharacter()"
+          *ngIf="charactersListLength ? currentCharacterId < charactersListLength : false"
           class="btn btn-primary btn-sm">
           Next character
         </button>

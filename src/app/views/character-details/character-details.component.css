@@ -1,3 +1,11 @@
 .clr-row.custom-card {
   margin: 0 auto;
 }
+
+.datagrid-cell {
+  width: 50%
+}
+
+.datagrid-cell:first-of-type {
+  font-weight: bold;
+}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CharacterInterface } from '../../interfaces/app-api.interface';
 import { MainPageService } from './main-page.service';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
@@ -9,8 +10,13 @@ import { MainPageService } from './main-page.service';
   styleUrls: ['./main-page.component.css'],
 })
 export class MainPageComponent {
-  characters$ = this.mainPageService.characters$;
-  trackByName = (_index: number, item: CharacterInterface) => item.name;
+  isMoreCharactersToDownload = true;
+  nextPageNo: string | null = null;
+  characters$ = this.mainPageService.charactersResponse$.pipe(
+    tap(res => this.isMoreCharactersToDownload = !!res.next),
+    tap(res => this.nextPageNo = res.next ),
+    map(res => res.results),
+  );
 
   constructor(
     private readonly mainPageService: MainPageService,
@@ -18,10 +24,16 @@ export class MainPageComponent {
   ) {
   }
 
+  trackByName = (_index: number, item: CharacterInterface) => item.name;
+
   viewCharacterDetails(character: CharacterInterface) {
     const cutUrl = character.url.match(/\d+/);
     const id = cutUrl?.[0];
 
     void this.router.navigate([id]);
+  }
+
+  loadMoreCharacters() {
+    this.mainPageService.loadMoreCharacters();
   }
 }
